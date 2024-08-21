@@ -8,14 +8,24 @@
       <div class="footer-section">
         <h3>CONTACT</h3>
         <ul>
-          <li><NuxtLink to="/">ABOUT</NuxtLink></li>
-          <li><NuxtLink to="/">TRACK YOUR ORDER</NuxtLink></li>
+          <li>
+            <a href="https://furia.gg/about/" target="_blank">ABOUT</a>
+          </li>
+          <li>
+            <a href="https://furia.gg/track-order/" target="_blank">
+              TRACK YOUR ORDER
+            </a>
+          </li>
         </ul>
       </div>
       <div class="footer-section">
         <h3>POLICY</h3>
         <ul>
-          <li><NuxtLink to="/">TERMS AND CONDITIONS</NuxtLink></li>
+          <li>
+            <a href="https://furia.gg/terms-and-conditions/" target="_blank">
+              TERMS AND CONDITIONS
+            </a>
+          </li>
         </ul>
       </div>
       <div class="footer-section">
@@ -32,6 +42,7 @@
     </div>
   </footer>
 </template>
+
 <style scoped lang="scss">
 .footer {
   background-color: #000;

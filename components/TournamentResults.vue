@@ -6,14 +6,11 @@
     >
       TOURNAMENT <span>RESULTS</span>
     </h2>
-
-    <div v-if="store.isLoading" class="loader">Loading...</div>
-
     <div
+      v-if="store.isRecentResults || store.isAllMatches"
       v-for="(result, index) in store.visibleResults"
       :key="index"
       class="match-result"
-      v-if="!store.isLoading && (store.isRecentResults || store.isAllMatches)"
     >
       <p class="date">
         {{ result.date }}
@@ -30,11 +27,12 @@
       </div>
     </div>
 
+    <!-- Upcoming events section -->
     <div
+      v-if="store.isUpcomingEvents"
       v-for="(event, index) in store.visibleEvents"
       :key="index"
       class="match-result"
-      v-if="!store.isLoading && store.isUpcomingEvents"
     >
       <p class="date">
         {{ event.date }}
@@ -50,34 +48,24 @@
       </div>
     </div>
 
+    <!-- Empty state for upcoming events -->
     <div
-      v-if="
-        !store.isLoading &&
-        store.isUpcomingEvents &&
-        store.visibleEvents.length === 0
-      "
+      v-if="store.isUpcomingEvents && store.visibleEvents.length === 0"
       class="empty-state"
     >
       <p>No upcoming events at the moment. Stay tuned!</p>
     </div>
 
+    <!-- Control buttons -->
     <button
-      v-if="
-        !store.isLoading &&
-        store.canViewMore &&
-        (store.isRecentResults || store.isAllMatches)
-      "
+      v-if="store.canViewMore && (store.isRecentResults || store.isAllMatches)"
       class="view-buttons"
       @click="store.viewMore"
     >
       VIEW MORE
     </button>
     <button
-      v-if="
-        !store.isLoading &&
-        store.canViewLess &&
-        (store.isRecentResults || store.isAllMatches)
-      "
+      v-if="store.canViewLess && (store.isRecentResults || store.isAllMatches)"
       class="view-buttons"
       @click="store.viewLess"
     >
@@ -85,14 +73,14 @@
     </button>
 
     <button
-      v-if="!store.isLoading && store.canViewMore && store.isUpcomingEvents"
+      v-if="store.canViewMore && store.isUpcomingEvents"
       class="view-buttons"
       @click="store.viewMoreUpcoming"
     >
       VIEW MORE
     </button>
     <button
-      v-if="!store.isLoading && store.canViewLess && store.isUpcomingEvents"
+      v-if="store.canViewLess && store.isUpcomingEvents"
       class="view-buttons"
       @click="store.viewLessUpcoming"
     >

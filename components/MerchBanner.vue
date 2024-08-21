@@ -1,5 +1,5 @@
 <template>
-  <section class="merch-banner" @click="goToMerchPage">
+  <section class="merch-banner" target="_blank" @click="goToMerchPage">
     <img
       src="public\images\merch-banner.png"
       alt="Merch Banner"
@@ -10,7 +10,7 @@
 
 <script setup>
 function goToMerchPage() {
-  navigateTo('/merch');
+  window.open('https://furia.gg/', '_blank');
 }
 </script>
 
