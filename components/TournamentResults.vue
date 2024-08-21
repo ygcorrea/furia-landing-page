@@ -1,17 +1,19 @@
 <template>
   <section class="tournament-results">
     <h2
-      v-if="!store.isUpcomingEvents || !store.visibleEvents.length === 0"
+      v-if="!store.isUpcomingEvents || store.visibleEvents.length > 0"
       class="tournament-title"
     >
       TOURNAMENT <span>RESULTS</span>
     </h2>
 
+    <div v-if="store.isLoading" class="loader">Loading...</div>
+
     <div
       v-for="(result, index) in store.visibleResults"
       :key="index"
       class="match-result"
-      v-if="store.isRecentResults || store.isAllMatches"
+      v-if="!store.isLoading && (store.isRecentResults || store.isAllMatches)"
     >
       <p class="date">
         {{ result.date }}
@@ -27,11 +29,12 @@
         <p>{{ result.event }}</p>
       </div>
     </div>
+
     <div
       v-for="(event, index) in store.visibleEvents"
       :key="index"
       class="match-result"
-      v-if="store.isUpcomingEvents"
+      v-if="!store.isLoading && store.isUpcomingEvents"
     >
       <p class="date">
         {{ event.date }}
@@ -46,21 +49,35 @@
         <p>{{ event.prizepool }}</p>
       </div>
     </div>
+
     <div
-      v-if="store.isUpcomingEvents && store.visibleEvents.length === 0"
+      v-if="
+        !store.isLoading &&
+        store.isUpcomingEvents &&
+        store.visibleEvents.length === 0
+      "
       class="empty-state"
     >
       <p>No upcoming events at the moment. Stay tuned!</p>
     </div>
+
     <button
-      v-if="store.canViewMore && (store.isRecentResults || store.isAllMatches)"
+      v-if="
+        !store.isLoading &&
+        store.canViewMore &&
+        (store.isRecentResults || store.isAllMatches)
+      "
       class="view-buttons"
       @click="store.viewMore"
     >
       VIEW MORE
     </button>
     <button
-      v-if="store.canViewLess && (store.isRecentResults || store.isAllMatches)"
+      v-if="
+        !store.isLoading &&
+        store.canViewLess &&
+        (store.isRecentResults || store.isAllMatches)
+      "
       class="view-buttons"
       @click="store.viewLess"
     >
@@ -68,14 +85,14 @@
     </button>
 
     <button
-      v-if="store.canViewMore && store.isUpcomingEvents"
+      v-if="!store.isLoading && store.canViewMore && store.isUpcomingEvents"
       class="view-buttons"
       @click="store.viewMoreUpcoming"
     >
       VIEW MORE
     </button>
     <button
-      v-if="store.canViewLess && store.isUpcomingEvents"
+      v-if="!store.isLoading && store.canViewLess && store.isUpcomingEvents"
       class="view-buttons"
       @click="store.viewLessUpcoming"
     >
@@ -153,14 +170,16 @@ store.fetchResults();
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-direction: column;
       background-color: #ebebeb;
       border-radius: 4px;
-      padding: 0 32px;
+
       margin-bottom: 15px;
       border: 4px solid #8f5d0f;
-      height: 132px;
+      width: 100%;
+      height: 150px;
       position: relative;
-      width: 90%;
+      padding: 10px;
       &::after {
         content: '';
         bottom: -10px;
@@ -173,16 +192,27 @@ store.fetchResults();
         position: absolute;
         z-index: -1;
       }
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+        height: 132px;
+        width: 90%;
+        padding: 0 32px;
+      }
 
       .date {
         color: #0d0d0d;
         font-family: 'Kufam', sans-serif;
-        font-size: 42px;
+        font-size: 20px;
         font-weight: 700;
-        max-width: 180px;
         flex-shrink: 0;
         text-align: left;
-        line-height: 34px;
+
+        @media (min-width: 768px) {
+          font-size: 42px;
+          max-width: 180px;
+          line-height: 34px;
+        }
       }
 
       .match {
@@ -191,7 +221,10 @@ store.fetchResults();
         justify-content: center;
         flex-grow: 1;
         text-align: center;
-
+        flex-wrap: wrap;
+        @media (min-width: 768px) {
+          width: 100%;
+        }
         .team-logo {
           height: 60px;
           padding: 0 20px;
@@ -203,6 +236,10 @@ store.fetchResults();
           font-size: 24px;
           font-weight: 500;
           line-height: 24px;
+          display: none;
+          @media (min-width: 768px) {
+            display: flex;
+          }
         }
 
         .score {
@@ -210,7 +247,10 @@ store.fetchResults();
           font-size: 24px;
           letter-spacing: 8px;
           font-family: 'Kufam', sans-serif;
-          margin: 0 20px;
+
+          @media (min-width: 768px) {
+            margin: 0 20px;
+          }
         }
       }
 
@@ -218,9 +258,12 @@ store.fetchResults();
         color: #8f5d0f;
         font-size: 16px;
         font-weight: 500;
-        width: 140px;
-        flex-shrink: 0;
-        text-align: right;
+
+        @media (min-width: 768px) {
+          width: 140px;
+          flex-shrink: 0;
+          text-align: right;
+        }
       }
     }
 

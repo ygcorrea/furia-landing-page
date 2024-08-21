@@ -47,10 +47,12 @@ function prevImage() {
     display: flex;
     justify-content: space-between;
     position: absolute;
-    top: 50%;
+    top: 55%;
     width: 100%;
     transform: translateY(-50%);
-
+    @media (min-width: 768px) {
+      top: 50%;
+    }
     .control-button {
       background: rgba(0, 0, 0, 0.075);
       border: none;

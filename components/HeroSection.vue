@@ -36,25 +36,36 @@ const store = useTournamentResultsStore();
   justify-content: center;
   position: relative;
   top: -20px;
+
   &-title {
     color: #fff;
     font-family: 'Anton', sans-serif;
-    font-size: 124px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     position: relative;
-    top: 20px;
+    top: 10px;
+
+    @media (min-width: 768px) {
+      font-size: 124px;
+      top: 20px;
+    }
   }
   .cta-buttons {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     width: 100%;
     align-items: center;
-    gap: 77px;
+    gap: 40px;
     top: 160px;
     position: relative;
-
+    z-index: 0;
+    @media (min-width: 768px) {
+      flex-direction: row;
+      gap: 77px;
+    }
     .cta-button {
       background-color: white;
       border: 5px solid #8f5d0f;
