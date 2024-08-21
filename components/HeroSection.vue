@@ -62,6 +62,7 @@ const store = useTournamentResultsStore();
     top: 160px;
     position: relative;
     z-index: 0;
+    padding: 20px;
     @media (min-width: 768px) {
       flex-direction: row;
       gap: 77px;
@@ -73,10 +74,10 @@ const store = useTournamentResultsStore();
       font-weight: bold;
       color: #000000;
       border-radius: 20px;
-      width: 350px;
+      width: 100%;
       height: 70px;
       cursor: pointer;
-      font-size: 24px;
+      font-size: 18px;
       line-height: normal;
       text-transform: uppercase;
       transition: color 0.3s ease;
@@ -84,6 +85,10 @@ const store = useTournamentResultsStore();
 
       &:hover {
         color: #8f5d0f;
+      }
+      @media (min-width: 768px) {
+        width: 350px;
+        font-size: 24px;
       }
     }
   }

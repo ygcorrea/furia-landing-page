@@ -37,7 +37,10 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
 
   &-logo img {
-    height: 50px;
+    height: 30px;
+    @media (min-width: 768px) {
+      height: 50px;
+    }
   }
 
   &-links {
@@ -51,13 +54,16 @@
       text-decoration: none;
       text-align: center;
       font-family: Poppins, sans-serif;
-      font-size: 24px;
+      font-size: 14px;
       text-transform: uppercase;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
       &:hover {
         color: #8f5d0f;
+      }
+      @media (min-width: 768px) {
+        font-size: 24px;
       }
     }
     .active {

@@ -113,7 +113,7 @@ store.fetchResults();
   &-title {
     color: #8f5d0f;
     font-family: 'Kufam', sans-serif;
-    font-size: 48px;
+    font-size: 34px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -122,6 +122,9 @@ store.fetchResults();
     & span {
       color: #000000;
       font-family: 'Kufam', sans-serif;
+    }
+    @media (min-width: 768px) {
+      font-size: 48px;
     }
   }
   &-results {
@@ -136,36 +139,6 @@ store.fetchResults();
     position: relative;
     margin-top: 120px;
 
-    .cta-buttons {
-      margin-top: 130px;
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      align-items: center;
-      gap: 77px;
-
-      .cta-button {
-        background-color: white;
-        border: 5px solid #8f5d0f;
-        padding: 10px 20px;
-        font-weight: bold;
-        color: #000000;
-        border-radius: 30px;
-        width: 368px;
-        height: 86px;
-        cursor: pointer;
-        font-size: 28px;
-        font-weight: 600;
-        line-height: normal;
-        text-transform: uppercase;
-        transition: color 0.3s ease;
-
-        &:hover {
-          background-color: transparent;
-          color: #8f5d0f;
-        }
-      }
-    }
     .match-result {
       display: flex;
       align-items: center;
@@ -226,8 +199,14 @@ store.fetchResults();
           width: 100%;
         }
         .team-logo {
-          height: 60px;
-          padding: 0 20px;
+          height: 40px;
+          max-width: 80px;
+          padding: 0 10px;
+
+          @media (min-width: 768px) {
+            height: 60px;
+            gap: 20px;
+          }
         }
 
         .team1,
@@ -274,10 +253,10 @@ store.fetchResults();
       font-weight: bold;
       color: #000000;
       border-radius: 20px;
-      width: 350px;
+      width: 100%;
       height: 70px;
       cursor: pointer;
-      font-size: 24px;
+      font-size: 18px;
       line-height: normal;
       text-transform: uppercase;
       transition: color 0.3s ease;
@@ -285,6 +264,11 @@ store.fetchResults();
       &:hover {
         background-color: #8f5d0f;
         color: #ffffff;
+      }
+      @media (min-width: 768px) {
+        padding: 10px;
+        width: 350px;
+        font-size: 24px;
       }
     }
     .empty-state {
